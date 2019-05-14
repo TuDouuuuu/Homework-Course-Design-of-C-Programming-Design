@@ -2,8 +2,8 @@
 #define _IOSTREAM_
 #include<string>
 #include<vector>
-using std::string;
-
+//using std::string;
+using namespace std;
 
 class Order{
 private:
@@ -27,12 +27,5 @@ public:
 	}
 };
 int Order::no=1;
-
-int main(){
-	std::vector<Order> v;
-	Order o1;
-	v.push_back(o1);
-	v[0].test();
-}
 
 #endif
