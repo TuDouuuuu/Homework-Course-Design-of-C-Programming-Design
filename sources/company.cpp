@@ -1,6 +1,6 @@
 #ifndef _IOSTEAM_
 #define _IOSTEAM_
-#include"product.h"
+#include"Company.h"
 #include<string>
 #include<iostream>
 //构造函数
