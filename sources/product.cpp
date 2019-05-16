@@ -2,34 +2,21 @@
 #define _IOSTEAM_
 #include"product.h"
 #include<string>
+#include<iostream>
+//构造函数
 Product::Product(string n,int p){
 	name=n;prize=p;
 }
-
-void Product::ReName(string n){
-	name=n;
-}
+//操作系列
 void Product::RePrize(int p){
 	prize=p;
 }
-
-string Product::ReturnName(){
-	return name;
+void Product::Re(string n,int p){
+	name=n;prize=p;
 }
-
+//读取系列
 int Product::ReturnPrize(){
 	return prize;
 }
-int main(){
-	Product a;
-	std::cout<<a.ReturnName()<<" "<<a.ReturnPrize()<<endl;
-	string n;
-	cin>>n;
-	a.ReName(n);
-	std::cout<<a.ReturnName()<<" "<<a.ReturnPrize()<<endl;
-	//Product b("cyz");
-	//std::cout<<b.ReturnName()<<" "<<b.ReturnPrize()<<endl;
-	/*Product c(,39);
-	std::cout<<c.ReturnName()<<" "<<c.ReturnPrize()<<endl;*/
-}
+
 #endif
