@@ -1,7 +1,3 @@
-/*#ifndef _COMPANY_H
-#define _COMPANY_H
-#ifndef _PRODUCT_H
-#define _PRODUCT_H*/
 #include"Product.h"
 #include<string>
 using namespace std;
@@ -10,12 +6,13 @@ private:
 	int no;
 	Company c;Product p;
 	int num;int sum;
+	Order *next=NULL;
 public:
 	Order(string n1="No Name",string n2="No Name",int p=0,int n=0,int s=0);
-	void op(string s1,string p,string n);
-	void del(string );
+	void display();
+	void connectNode(Order &a,Order &b);
+	Order *search(string op,string n,Order now);
 	string ReturnCompanyName();
+	string ReturnProductName();
 };
-/*
-#endif 
-#endif*/
+
