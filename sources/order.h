@@ -9,10 +9,16 @@ private:
 	Order *next=NULL;
 public:
 	Order(string n1="No Name",string n2="No Name",int p=0,int n=0,int s=0);
+
 	void display();
 	void connectNode(Order &a,Order &b);
-	Order *search(string op,string n,Order now);
+	int str_int(string x);
+
+	void search(string op,string n,Order now);
+	//void 
 	string ReturnCompanyName();
 	string ReturnProductName();
+	int ReturnProductPrize();
+	int ReturnNo();
 };
 
