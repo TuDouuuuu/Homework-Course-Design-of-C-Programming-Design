@@ -4,7 +4,8 @@
 #include<cstring>
 #include<iomanip>
 //构造函数
-Order::Order(string n1,string n2,int pp,int n,int s){
+Order::Order(int nono,string n1,string n2,int pp,int n,int s){
+	no=nono;
 	c.ReName(n1);p.ReName(n2);p.RePrize(pp);num=n;sum=s*p.ReturnPrize();
 }
 
@@ -27,14 +28,15 @@ int Order::str_int(string s){
 
 //操作函数
 //创造新节点的函数
-Order* Order::create(Order* x){
+Order* Order::create(Order* x,int nono,string n1,string n2,int p,int n,int s){
 	Order* u=x;
-	Order* v=new Order("pikachu","cyz",5,13);
+	Order* v=new Order(nono,n1,n2,p,n,s);
 	connectNode(u,v);
+	return v;
 }
 //查询函数
 void Order::search(string op,string n,Order* now){
-	Order *u=now;
+	Order *u=now->next;
 	if(op=="-C"){//查询公司名称
 		cout<<"There are results:"<<endl;
 		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
