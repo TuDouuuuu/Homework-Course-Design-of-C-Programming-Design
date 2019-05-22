@@ -83,9 +83,47 @@ void Order::search(string op,string n,Order* now){
 }
 //删除函数
 void Order::del(string op,string n,Order *now){
-	Order* u=now;
 	Order* v=now;
-	
+	Order* u=v->next;
+	if(op=="-C"){//删除公司名称
+		while(u!=NULL){
+			if(u->ReturnCompanyName()==n){
+				v->next=u->next;
+				delete u;
+				u=u->next;
+			}
+		}
+	}
+	else if(op=="-PN"){//删除产品名称
+		while(u!=NULL){
+			if(u->ReturnProductName()==n){
+				v->next=u->next;
+				delete u;
+				u=u->next;
+			}
+		}
+	}
+	else if(op=="-PP"){//删除产品单价
+		while(u!=NULL){
+			if(u->ReturnProductPrize()==str_int(n)){
+				v->next=u->next;
+				delete u;
+				u=u->next;
+			}
+		}
+	}
+	else if(op=="-N"){//删除某个编号
+		while(u!=NULL){
+			if(u->ReturnNo()==str_int(n)){
+				v->next=u->next;
+				delete u;
+				u=u->next;
+			}
+		}
+	}
+	else{
+		cout<<"Unknow opeartion!!"<<endl;
+	}
 
 }
 
@@ -108,5 +146,7 @@ int main(){
 	a.create(&a);
 	//Order b("pikachu","cyz",5,13);
 	//a.connectNode(&a,&b);
+	a.search("-PN","cyz",&a);
+	a.del("-PN","cyz",&a);
 	a.search("-PN","cyz",&a);
 }
