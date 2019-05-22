@@ -9,11 +9,12 @@ Order::Order(string n1,string n2,int pp,int n,int s){
 }
 
 //辅助函数
-void Order::connectNode(Order &a,Order &b){
-	a.next=&b;
+void Order::connectNode(Order *a,Order *b){
+	a->next=b;
 }
-void Order::display(){
-	cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<c.ReturnName()<<"|"<<setw(15)<<p.ReturnName()<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+void Order::display(bool x){//0是格式输出
+	if(x)cout<<setiosflags(ios::left)<<"|"<<setw(15)<<no<<"|"<<setw(15)<<c.ReturnName()<<"|"<<setw(15)<<p.ReturnName()<<"|"<<setw(15)<<p.ReturnPrize()<<"|"<<setw(15)<<num<<"|"<<setw(15)<<sum<<"|"<<endl;
+	else cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 }
 int Order::str_int(string s){
 	int len=s.length();
@@ -25,48 +26,54 @@ int Order::str_int(string s){
 }
 
 //操作函数
+//创造新节点的函数
+Order* Order::create(Order* x){
+	Order* u=x;
+	Order* v=new Order("pikachu","cyz",5,13);
+	connectNode(u,v);
+}
 //查询函数
-void Order::search(string op,string n,Order now){
-	Order *u=&now;
+void Order::search(string op,string n,Order* now){
+	Order *u=now;
 	if(op=="-C"){//查询公司名称
 		cout<<"There are results:"<<endl;
-		cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 		while(u!=NULL){
-			if(u->ReturnCompanyName()==n)u->display();
+			if(u->ReturnCompanyName()==n)u->display(1);
 			u=u->next;
 		}
 	}
 	else if(op=="-PN"){//查询产品名称
 		cout<<"There are results:"<<endl;
-		cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 		while(u!=NULL){
-			if(u->ReturnProductName()==n)u->display();
+			if(u->ReturnProductName()==n)u->display(1);
 			u=u->next;
 		}
 	}
 	else if(op=="-PP"){//查询产品单价
 		cout<<"There are results:"<<endl;
-		cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 		while(u!=NULL){
-			if(u->ReturnProductPrize()==str_int(n))u->display();
+			if(u->ReturnProductPrize()==str_int(n))u->display(1);
 			u=u->next;
 		}
 	}
 	else if(op=="-N"){//查询某个编号
 		cout<<"There are results:"<<endl;
-		cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 		while(u!=NULL){
 			if(u->ReturnNo()==str_int(n)){
-				u->display();break;
+				u->display(1);break;
 			}
 			u=u->next;
 		}
 	}
 	else if(op=="-D"){//输出所有
 		cout<<"There are results:"<<endl;
-		cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
+		display(0);//cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 		while(u!=NULL){
-			u->display();
+			u->display(1);
 			u=u->next;
 		}
 	}
@@ -75,9 +82,14 @@ void Order::search(string op,string n,Order now){
 	}
 }
 //删除函数
+void Order::del(string op,string n,Order *now){
+	Order* u=now;
+	Order* v=now;
+	
 
+}
 
-//返回函数
+//返回值的函数
 string Order::ReturnCompanyName(){
 	return c.ReturnName();
 }
@@ -93,7 +105,8 @@ int Order::ReturnNo(){
 
 int main(){
 	Order a("pikachu");
-	Order b("pikachu","cyz");
-	a.connectNode(a,b);
-	b.search("-PN","cyz",a);
+	a.create(&a);
+	//Order b("pikachu","cyz",5,13);
+	//a.connectNode(&a,&b);
+	a.search("-PN","cyz",&a);
 }
