@@ -17,6 +17,7 @@ public:
 	Order* create(Order* x);
 	void search(string op,string n,Order *now);
 	void del(string op,string n,Order *now);
+	void revise(int x,string op,string n,Order *now);
 
 	string ReturnCompanyName();
 	string ReturnProductName();

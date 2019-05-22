@@ -124,7 +124,20 @@ void Order::del(string op,string n,Order *now){
 	else{
 		cout<<"Unknow opeartion!!"<<endl;
 	}
-
+}
+//修改订单信息
+void Order::revise(int x,string op,string n,Order *now){
+	Order *u=now;
+	while(u!=NULL){
+		if(u->ReturnNo()==x){
+			if(op=="-C")u->c.ReName(n);
+			else if(op=="-PN")u->p.ReName(n);
+			else if(op=="-PP")u->p.RePrize(str_int(n));
+			else cout<<"Unknow opeartion!!"<<endl;
+			return ;
+		}
+	}
+	cout<<"Cannot find the order!!"<<endl;
 }
 
 //返回值的函数
@@ -141,6 +154,7 @@ int Order::ReturnNo(){
 	return no;
 }
 
+/*
 int main(){
 	Order a("pikachu");
 	a.create(&a);
@@ -150,3 +164,4 @@ int main(){
 	a.del("-PN","cyz",&a);
 	a.search("-PN","cyz",&a);
 }
+*/
