@@ -4,9 +4,9 @@
 #include<cstring>
 #include<iomanip>
 //构造函数
-Order::Order(int nono,string n1,string n2,int pp,int n,int s){
+Order::Order(int nono,string n1,string n2,int pp,int n){
 	no=nono;
-	c.ReName(n1);p.ReName(n2);p.RePrize(pp);num=n;sum=s*p.ReturnPrize();
+	c.ReName(n1);p.ReName(n2);p.RePrize(pp);num=n;sum=n*pp;
 }
 
 //辅助函数
@@ -18,7 +18,7 @@ void Order::display(bool x){//0是格式输出
 	else cout<<setiosflags(ios::left)<<"|"<<setw(15)<<"Order ID"<<"|"<<setw(15)<<"Company's Name"<<"|"<<setw(15)<<"Product's Name"<<"|"<<setw(15)<<"Prize"<<"|"<<setw(15)<<"Quantity"<<"|"<<setw(15)<<"Sum"<<"|"<<endl;
 }
 int Order::str_int(string s){
-	int len=s.length();
+	int len=s.length();	
 	int ans=0;
 	for(int i=len-1;i>=0;i--){
 		ans=ans*10+s[i]-'0';
@@ -28,9 +28,9 @@ int Order::str_int(string s){
 
 //操作函数
 //创造新节点的函数
-Order* Order::create(Order* x,int nono,string n1,string n2,int p,int n,int s){
+Order* Order::create(Order* x,int nono,string n1,string n2,int p,int n){
 	Order* u=x;
-	Order* v=new Order(nono,n1,n2,p,n,s);
+	Order* v=new Order(nono,n1,n2,p,n);
 	connectNode(u,v);
 	return v;
 }

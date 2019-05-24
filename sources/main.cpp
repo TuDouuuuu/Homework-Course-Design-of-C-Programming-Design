@@ -24,10 +24,10 @@ int main(){
 	outFile.open("..\\\\data_example\\data.txt");
 	static int cnt=0;
 	Order root(cnt);cnt++;
-	string s1,s2;int temp,p,n,s;
+	string s1,s2;int temp,p,n;
 	Order* u=&root;
-	while(inFile>>temp>>s1>>s2>>p>>n>>s){
-		u=u->create(u,cnt,s1,s2,p,n,s);
+	while(inFile>>temp>>s1>>s2>>p>>n){
+		u=u->create(u,cnt,s1,s2,p,n);
 		cnt++;
 	}
 	/*int op;
