@@ -14,10 +14,12 @@ public:
 	void connectNode(Order *a,Order *b);
 	int str_int(string x);
 
-	Order* create(Order* x,int nono,string n1="No Name",string n2="No Name",int p=0,int n=0);
-	void search(string op,string n,Order *now);
+	Order* createFromFile(Order* x,int nono,string n1="No Name",string n2="No Name",int p=0,int n=0);
+	Order* createFromKeyboard(int nono);
+	void allDisplay();
+	void search();
 	void del(string op,string n,Order *now);
-	void revise(int x,string op,string n,Order *now);
+	void revise();
 
 	string ReturnCompanyName();
 	string ReturnProductName();
