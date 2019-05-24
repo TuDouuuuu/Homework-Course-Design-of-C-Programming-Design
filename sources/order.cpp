@@ -160,10 +160,35 @@ void Order::search(){
 	}*/
 }
 //删除函数
-void Order::del(string op,string n,Order *now){
-	Order* v=now;
-	Order* u=v->next;
-	if(op=="-C"){//删除公司名称
+void Order::del(){
+	//获取修改的参数
+	int x,op;string n;
+	cout<<"Please know the ID of order first!"<<endl;
+	cout<<"Please input the ID of the order:";cin>>x;
+
+	//确认
+	while(1){
+		string flag;
+		cout<<"Are you sure?[Y/N]";cin>>flag;
+		if(flag=="N")return ;
+		else if(flag=="Y")break;
+		else cout<<"For Y is yes,N is no."<<endl;
+	}
+
+	Order* v=NULL;
+	Order* u=next;
+	while(u!=NULL){
+		if(u->ReturnNo()==x){
+			v->next=u->next;
+			return ;
+		}
+		v=u;
+		u=u->next;
+	}
+	cout<<"Cannot find the order!!"<<endl;
+	
+	//其它魔改功能
+	/*if(op=="-C"){//删除公司名称
 		while(u!=NULL){
 			if(u->ReturnCompanyName()==n){
 				v->next=u->next;
@@ -201,7 +226,7 @@ void Order::del(string op,string n,Order *now){
 	}
 	else{
 		cout<<"Unknow opeartion!!"<<endl;
-	}
+	}*/
 }
 //修改订单信息
 void Order::revise(){
@@ -219,6 +244,14 @@ void Order::revise(){
 	cout<<"Please input the place you want to change:";cin>>op;
 	cout<<"Please input the parameter you want to change to:";cin>>n;
 
+	//确认
+	while(1){
+		string flag;
+		cout<<"Are you sure?[Y/N]";cin>>flag;
+		if(flag=="N")return ;
+		else if(flag=="Y")break;
+		else cout<<"For Y is yes,N is no."<<endl;
+	}
 
 	Order *u=next;
 	while(u!=NULL){
@@ -256,4 +289,7 @@ int Order::ReturnProductPrize(){
 }
 int Order::ReturnNo(){
 	return no;
+}
+int Order::ReturnNum(){
+	return num;
 }

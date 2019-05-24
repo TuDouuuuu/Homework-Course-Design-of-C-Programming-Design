@@ -18,12 +18,13 @@ public:
 	Order* createFromKeyboard(int nono);
 	void allDisplay();
 	void search();
-	void del(string op,string n,Order *now);
+	void del();
 	void revise();
 
 	string ReturnCompanyName();
 	string ReturnProductName();
 	int ReturnProductPrize();
 	int ReturnNo();
+	int ReturnNum();
 };
 

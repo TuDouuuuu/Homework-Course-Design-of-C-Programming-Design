@@ -28,40 +28,40 @@ int main(){
 	static int cnt=0;
 	Order root(cnt);cnt++;
 
-	string s1,s2;int temp,p,n;//读入数据暂存使用
+	string s1,s2;int temp,p,n,s;//读入数据暂存使用
 
 	//读入已有数据
 	Order* u=&root;
-	while(inFile>>temp>>s1>>s2>>p>>n){
+	while(inFile>>temp>>s1>>s2>>p>>n>>s){
 		u=u->createFromFile(u,cnt,s1,s2,p,n);
-		cnt++;
+		cnt=u->ReturnNo();
 	}
-
-	//用于测试
-	/*root.search("-C","cyz",&root);
-	menu();*/
-
+	cnt++;
+	inFile.close();
 	//开始进行菜单操作
 	int op;
 	menu();
+	int flag=0;
 	while(cin>>op){
 		switch(op){
 			case 1:u=u->createFromKeyboard(cnt);cnt++;break;
 			case 2:root.revise();break;
 			case 3:root.allDisplay();break;
 			case 4:root.search();break;
-			//case 5:
+			case 5:root.del();break;
+			case 6:flag=1;break;
 		}
-		//root.search("-D","adsf",&root);
+		if(flag)break;
 		menu();
 	}
 
-
-
 	//输出文件用：
-	//ofstream outFile;
-	//outFile.open("..\\\\data_example\\data.txt");
-
-
+	ofstream outFile;
+	outFile.open("..\\\\data_example\\data.txt");
+	u=&root;
+	while(u!=NULL){
+		outFile<<u->ReturnNo()<<'\t'<<u->ReturnCompanyName()<<'\t'<<u->ReturnProductName()<<'\t'<<u->ReturnProductPrize()<<'\t'<<u->ReturnNum()<<endl;
+	}
+	outFile.close();
 	//ofstream cout("..\\\\data_example\\test1.txt");
 }
