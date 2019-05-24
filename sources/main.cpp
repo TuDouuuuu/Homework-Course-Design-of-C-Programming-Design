@@ -33,8 +33,8 @@ int main(){
 	//读入已有数据
 	Order* u=&root;
 	while(inFile>>temp>>s1>>s2>>p>>n){
-		u=u->createFromFile(u,cnt,s1,s2,p,n);
-		cnt=u->ReturnNo()+1;
+		u=u->createFromFile(u,temp,s1,s2,p,n);
+		cnt=temp+1;
 	}
 	inFile.close();
 
