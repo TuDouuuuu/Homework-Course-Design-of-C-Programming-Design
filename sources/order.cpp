@@ -180,6 +180,7 @@ void Order::del(){
 	while(u!=NULL){
 		if(u->ReturnNo()==x){
 			v->next=u->next;
+			delete u;
 			return ;
 		}
 		v=u;
@@ -292,4 +293,7 @@ int Order::ReturnNo(){
 }
 int Order::ReturnNum(){
 	return num;
+}
+Order* Order::ReturnNext(){
+	return next;
 }

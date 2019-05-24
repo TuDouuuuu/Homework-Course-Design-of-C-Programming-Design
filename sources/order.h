@@ -26,5 +26,6 @@ public:
 	int ReturnProductPrize();
 	int ReturnNo();
 	int ReturnNum();
+	Order* ReturnNext();
 };
 

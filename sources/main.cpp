@@ -32,12 +32,12 @@ int main(){
 
 	//读入已有数据
 	Order* u=&root;
-	while(inFile>>temp>>s1>>s2>>p>>n>>s){
+	while(inFile>>temp>>s1>>s2>>p>>n){
 		u=u->createFromFile(u,cnt,s1,s2,p,n);
-		cnt=u->ReturnNo();
+		cnt=u->ReturnNo()+1;
 	}
-	cnt++;
 	inFile.close();
+
 	//开始进行菜单操作
 	int op;
 	menu();
@@ -58,10 +58,12 @@ int main(){
 	//输出文件用：
 	ofstream outFile;
 	outFile.open("..\\\\data_example\\data.txt");
-	u=&root;
+	u=&root;u=u->ReturnNext();
 	while(u!=NULL){
 		outFile<<u->ReturnNo()<<'\t'<<u->ReturnCompanyName()<<'\t'<<u->ReturnProductName()<<'\t'<<u->ReturnProductPrize()<<'\t'<<u->ReturnNum()<<endl;
+		u=u->ReturnNext();
 	}
+	
 	outFile.close();
 	//ofstream cout("..\\\\data_example\\test1.txt");
 }
