@@ -63,7 +63,7 @@ void Order::search(){
 	int op;string n;
 	//menu
 	cout<<"		===================================================="<<endl;
-	cout<<"			Welcome to the order manage system!!"<<endl;
+	cout<<"			Welcome to the order search system!!"<<endl;
 	cout<<"				1.Abuut the ID of the order"<<endl;
 	cout<<"				2.About the name of the company"<<endl;
 	cout<<"				3.About the name of the product"<<endl;
@@ -237,7 +237,7 @@ void Order::revise(){
 	cout<<"Please input the ID of the order:";cin>>x;
 	//menu
 	cout<<"		===================================================="<<endl;
-	cout<<"			Welcome to the order manage system!!"<<endl;
+	cout<<"			Welcome to the order revise system!!"<<endl;
 	cout<<"				1.Change the name of the company"<<endl;
 	cout<<"				2.Change the name of the product"<<endl;
 	cout<<"				3.Change the prize of the product"<<endl;
