@@ -241,6 +241,7 @@ void Order::revise(){
 	cout<<"				1.Change the name of the company"<<endl;
 	cout<<"				2.Change the name of the product"<<endl;
 	cout<<"				3.Change the prize of the product"<<endl;
+	cout<<"				4.Change the Quantity of the product"<<endl;
 	cout<<"		===================================================="<<endl;
 	cout<<"Please input the place you want to change:";cin>>op;
 	cout<<"Please input the parameter you want to change to:";cin>>n;
@@ -262,7 +263,8 @@ void Order::revise(){
 			switch(op){
 				case 1:u->c.ReName(n);break;
 				case 2:u->p.ReName(n);break;
-				case 3:u->p.RePrize(str_int(n));break;
+				case 3:u->p.RePrize(str_int(n));u->sum=u->p.ReturnPrize()*u->num;break;
+				case 4:u->num=str_int(n);u->sum=u->p.ReturnPrize()*u->num;break;
 				default:cout<<"Unknow opeartion!!"<<endl;
 			}
 			return ;
