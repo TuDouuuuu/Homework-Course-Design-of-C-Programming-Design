@@ -1,0 +1,7 @@
+savings123	70000
+checking661	20000
+savings128	2000
+savings131	2000
+checking681	200000
+checking688	10000
+x	0
