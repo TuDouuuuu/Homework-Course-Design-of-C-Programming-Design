@@ -1,8 +1,6 @@
 #ifndef HEADER_PRODUCT
 #define HEADER_PRODUCT
-#include<string>
 #include"Company.h"
-using namespace std;
 class Product:public Company{
 private:
 	int prize;

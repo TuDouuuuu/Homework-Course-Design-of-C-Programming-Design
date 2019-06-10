@@ -1,7 +1,11 @@
 #ifndef HEADER_ORDER
 #define HEADER_ORDER
 #include"Product.h"
+#include"Company.h"
 #include<string>
+#include<iostream>
+#include<cstring>
+#include<iomanip>
 using namespace std;
 class Order{
 private:

@@ -1,8 +1,7 @@
 #ifndef HEADER_COMPANY
 #define HEADER_COMPANY
-#include<string>
-#include<iostream>
-using namespace std;
+#include <string>
+using std::string;
 class Company{
 protected:
 	string name;

@@ -1,5 +1,4 @@
 #include"Company.h"
-#include<string>
 //构造函数
 Company::Company(string n){
 	name=n;

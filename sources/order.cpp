@@ -1,8 +1,4 @@
 #include"order.h"
-#include<string>
-#include<iostream>
-#include<cstring>
-#include<iomanip>
 //构造函数
 Order::Order(int nono,string n1,string n2,int pp,int n){
 	no=nono;

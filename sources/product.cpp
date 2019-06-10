@@ -1,7 +1,4 @@
 #include"Product.h"
-#include<string>
-#include<iostream>
-
 //构造函数
 Product::Product(string n,int p){
 	name=n;prize=p;

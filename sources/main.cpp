@@ -1,6 +1,3 @@
-#include<iostream>
-#include<cstdio>
-#include<string>
 #include<fstream>
 #include"company.h"
 #include"product.h"
