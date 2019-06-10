@@ -1,3 +1,5 @@
+#ifndef HEADER_PRODUCT
+#define HEADER_PRODUCT
 #include<string>
 #include"Company.h"
 using namespace std;
@@ -12,3 +14,4 @@ public:
 	
 	int ReturnPrize();//返回产品价格
 };
+#endif

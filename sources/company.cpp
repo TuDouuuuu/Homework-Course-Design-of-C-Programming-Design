@@ -1,8 +1,5 @@
-#ifndef _IOSTEAM_
-#define _IOSTEAM_
 #include"Company.h"
 #include<string>
-#include<iostream>
 //构造函数
 Company::Company(string n){
 	name=n;
@@ -15,4 +12,3 @@ void Company::ReName(string n){
 string Company::ReturnName(){
 	return name;
 }
-#endif

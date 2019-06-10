@@ -2,7 +2,8 @@
 #include<cstdio>
 #include<string>
 #include<fstream>
-
+#include"company.h"
+#include"product.h"
 #include"order.h"
 
 void menu(){

@@ -1,3 +1,5 @@
+#ifndef HEADER_ORDER
+#define HEADER_ORDER
 #include"Product.h"
 #include<string>
 using namespace std;
@@ -28,4 +30,4 @@ public:
 	int ReturnNum();
 	Order* ReturnNext();
 };
-
+#endif
