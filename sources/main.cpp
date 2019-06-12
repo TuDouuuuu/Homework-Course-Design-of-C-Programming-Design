@@ -11,8 +11,10 @@ void menu(){
 	cout<<"				2.Change an order's information"<<endl;
 	cout<<"				3.display all orders"<<endl;
 	cout<<"				4.Find some orders"<<endl;
-	cout<<"				5.Delete an order"<<endl;
-	cout<<"				6.save and exit"<<endl;
+	cout<<"				5.Delete an order"<<endl;	
+	cout<<"				6.Count a company's order"<<endl;
+	cout<<"				7.Save and exit"<<endl;
+
 	cout<<"		===================================================="<<endl;
 	cout<<"What opearation do you want to do:";
 }
@@ -47,7 +49,8 @@ int main(){
 			case 3:root.allDisplay();break;
 			case 4:root.search();break;
 			case 5:root.del();break;
-			case 6:flag=1;break;
+			case 6:root.companyCnt();break;
+			case 7:flag=1;break;
 		}
 		if(flag)break;
 		menu();

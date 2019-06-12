@@ -26,6 +26,7 @@ public:
 	void search();
 	void del();
 	void revise();
+	void companyCnt();
 
 	string ReturnCompanyName();
 	string ReturnProductName();

@@ -275,6 +275,20 @@ void Order::revise(){
 	}
 	cout<<"Cannot find the order!!"<<endl;
 }
+void Order::companyCnt(){
+	string temp;cout<<"Enter the company's name:";
+	cin>>temp;
+	int res=0;
+	Order *u=next;
+	while(u!=NULL){
+		if(u->ReturnCompanyName()==temp){
+			u->display(1);
+			res+=u->ReturnProductPrize()*u->ReturnNum();
+		}
+		u=u->next;
+	}
+	cout<<"The sum is:"<<res<<endl;
+}
 
 //返回值的函数
 string Order::ReturnCompanyName(){
