@@ -10,7 +10,7 @@ void menu(){//输出菜单
 	cout<<"			Welcome to the order manage system!!"<<endl;
 	cout<<"				1.Add a new order"<<endl;
 	cout<<"				2.Change an order's information"<<endl;
-	cout<<"				3.display all orders"<<endl;
+	cout<<"				3.Display all orders"<<endl;
 	cout<<"				4.Find some orders"<<endl;
 	cout<<"				5.Delete an order"<<endl;	
 	cout<<"				6.Count a company's order"<<endl;

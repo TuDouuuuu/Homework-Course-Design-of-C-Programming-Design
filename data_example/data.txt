@@ -4,4 +4,3 @@
 4	hwh	nb	10	27
 7	cyz	makerspace	300000	1
 8	tudou	poi	3123	123
-9	Å¤³¤ì	ÌïË¾ñR	3	2
