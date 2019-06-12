@@ -1,5 +1,5 @@
-#ifndef HEADER_COMPANY
-#define HEADER_COMPANY
+#ifndef _HEADER_COMPANY_
+#define _HEADER_COMPANY_
 #include <string>
 using std::string;
 class Company{

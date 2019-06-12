@@ -105,7 +105,7 @@ void Order::search(){
 				u=u->next;
 			}
 			break;
-		default:cout<<"Unknow opeartion!!"<<endl;
+		default:throw exNull();
 	}
 
 	//以下为魔改命令行版
@@ -182,7 +182,7 @@ void Order::del(){
 		v=u;
 		u=u->next;
 	}
-	cout<<"Cannot find the order!!"<<endl;
+	throw exNull();
 	
 	//其它魔改功能
 	/*if(op=="-C"){//删除公司名称
@@ -273,7 +273,7 @@ void Order::revise(){
 		}
 		u=u->next;
 	}
-	cout<<"Cannot find the order!!"<<endl;
+	throw exNull();
 }
 void Order::companyCnt(){
 	string temp;cout<<"Enter the company's name:";
@@ -287,7 +287,8 @@ void Order::companyCnt(){
 		}
 		u=u->next;
 	}
-	cout<<"The sum is:"<<res<<endl;
+	if(res==0)throw exNull();
+	else cout<<"The sum is:"<<res<<endl;
 }
 
 //返回值的函数

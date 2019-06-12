@@ -2,8 +2,9 @@
 #include"company.h"
 #include"product.h"
 #include"order.h"
+#include"ex.h"
 
-void menu(){
+void menu(){//输出菜单
 	cout<<endl;
 	cout<<"		===================================================="<<endl;
 	cout<<"			Welcome to the order manage system!!"<<endl;
@@ -39,21 +40,31 @@ int main(){
 	inFile.close();
 
 	//开始进行菜单操作
-	int op;
-	menu();
+	string op;
+	
 	int flag=0;
-	while(cin>>op){
-		switch(op){
-			case 1:u=u->createFromKeyboard(cnt);cnt++;break;
-			case 2:root.revise();break;
-			case 3:root.allDisplay();break;
-			case 4:root.search();break;
-			case 5:root.del();break;
-			case 6:root.companyCnt();break;
-			case 7:flag=1;break;
+	while(1){
+		try{menu();
+			cin>>op;
+			if(op.length()>1)throw exOp();
+			if(op[0]<'1'||op[0]>'7')throw exOp();
+			int opp;opp=op[0]-'0';
+			switch(opp){
+				case 1:u=u->createFromKeyboard(cnt);cnt++;break;
+				case 2:root.revise();break;
+				case 3:root.allDisplay();break;
+				case 4:root.search();break;
+				case 5:root.del();break;
+				case 6:root.companyCnt();break;
+				case 7:flag=1;break;
+				default:throw exOp();
+			}
+			if(flag)break;
+			menu();
 		}
-		if(flag)break;
-		menu();
+		catch(ex& e){
+			cout<<e.getWhat()<<endl;//menu();
+		}
 	}
 
 	//输出文件用：

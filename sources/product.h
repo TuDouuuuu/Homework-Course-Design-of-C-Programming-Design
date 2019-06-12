@@ -1,5 +1,5 @@
-#ifndef HEADER_PRODUCT
-#define HEADER_PRODUCT
+#ifndef _HEADER_PRODUCT_
+#define _HEADER_PRODUCT_
 #include"Company.h"
 class Product:public Company{
 private:

@@ -1,7 +1,8 @@
-#ifndef HEADER_ORDER
-#define HEADER_ORDER
+#ifndef _HEADER_ORDER_
+#define _HEADER_ORDER_
 #include"Product.h"
 #include"Company.h"
+#include"ex.h"
 #include<string>
 #include<iostream>
 #include<cstring>
