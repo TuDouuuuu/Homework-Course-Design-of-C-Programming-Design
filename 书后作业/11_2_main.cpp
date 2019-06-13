@@ -3,10 +3,9 @@
 #include<string>
 using namespace std;
 int main(){
-	char *s1,*s2;
+	string s1,s2;
 	while(cin>>s1>>s2){
-		BigInt ex1("123");BigInt ex2("123");
-		BigInt ex=ex1.operator+(ex2);
-		ex.print();
+		strInt ex1(s1);strInt ex2(s2);
+		cout<<add(ex1,ex2).display()<<endl;
 	}
 }

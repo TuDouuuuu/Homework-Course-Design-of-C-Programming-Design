@@ -15,7 +15,6 @@ public:
 class Shape{
 public:
 	virtual float area()const=0;
-	virtual float getR()const{return 0.0;}
 	void display(){cout<<area()<<endl;}
 };
 class Circle:public Shape{
@@ -24,9 +23,11 @@ protected:
 public:
 	Circle(float xx=0,float yy=0,float rr=0):p(xx,yy),r(rr){}
 	void setR(float rr){r=rr;}
-	virtual float getR()const{return r;}
+	float getR()const{return r;}
 	virtual float area()const{return 3.1415926*r*r;}
 };
+
+
 class Rectangle:public Shape{
 protected:
 	Point p1,p2;
@@ -56,7 +57,7 @@ int main(){
 	float x1,x2,x3,y1,y2,y3,r;
 	while(cin>>ch&&ch!='X'){
 		switch(ch){
-			case'C':cin>>x1>>y1>>r;pt=new Circle(x1,y1,r);cout<<"r="<<pt->getR()<<endl;break;
+			case'C':cin>>x1>>y1>>r;pt=new Circle(x1,y1,r);cout<<"r="<<Circle(x1,y1,r).getR()<<endl;break;
 			case'T':cin>>x1>>y1>>x2>>y2>>x3>>y3;pt=new Triangle(x1,x2,x3,y1,y2,y3);break;
 			case'R':cin>>x1>>y1>>x2>>y2;pt=new Rectangle(x1,x2,y1,y2);break;
 		}
