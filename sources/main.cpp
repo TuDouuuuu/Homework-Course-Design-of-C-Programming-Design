@@ -1,4 +1,5 @@
 #include<fstream>
+#include<windows.h>
 #include"company.h"
 #include"product.h"
 #include"order.h"
@@ -15,7 +16,6 @@ void menu(){//输出菜单
 	cout<<"				5.Delete an order"<<endl;	
 	cout<<"				6.Count a company's order"<<endl;
 	cout<<"				7.Save and exit"<<endl;
-
 	cout<<"		===================================================="<<endl;
 	cout<<"What opearation do you want to do:";
 }
@@ -44,23 +44,25 @@ int main(){
 	
 	int flag=0;
 	while(1){
-		try{menu();
-			cin>>op;
+		try{
+			menu();
+			cin>>op;	
 			if(op.length()>1)throw exOp();
 			if(op[0]<'1'||op[0]>'7')throw exOp();
 			int opp;opp=op[0]-'0';
 			switch(opp){
 				case 1:u=u->createFromKeyboard(cnt);cnt++;break;
 				case 2:root.revise();break;
-				case 3:root.allDisplay();break;
+				case 3:system("cls");root.allDisplay();break;
 				case 4:root.search();break;
 				case 5:root.del();break;
 				case 6:root.companyCnt();break;
 				case 7:flag=1;break;
 				default:throw exOp();
 			}
+			if(opp!=3&&opp!=4&&opp!=6)system("cls");
 			if(flag)break;
-			menu();
+			//menu();
 		}
 		catch(ex& e){
 			cout<<e.getWhat()<<endl;//menu();

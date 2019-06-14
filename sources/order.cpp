@@ -69,7 +69,7 @@ void Order::search(){
 	cout<<"Please input the parameter of the charastic:";cin>>n;
 
 
-
+	system("cls");
 	switch(op){
 		case 1://-N
 			cout<<"There are results:"<<endl;
@@ -280,6 +280,7 @@ void Order::companyCnt(){
 	cin>>temp;
 	int res=0;
 	Order *u=next;
+	system("cls");
 	while(u!=NULL){
 		if(u->ReturnCompanyName()==temp){
 			u->display(1);
