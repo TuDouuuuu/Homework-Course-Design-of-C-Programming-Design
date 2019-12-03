@@ -13,6 +13,7 @@ bool node::operator <(const node& b)const{
 }
 
 // AVLTree部分
+// private
 int AVLTree::getDeep(node*& rt){    //获得树高
     if(rt == NULL)return 0;
     else return rt->deep;
@@ -84,13 +85,11 @@ int AVLTree::_erase(node*& rt,string& _username,string& _password){  //删除的
                 node* tmp = rt;
                 if(rt->lson)rt = rt->lson;
                 else if(rt->rson)rt = rt->rson;
-                // delete tmp;tmp = NULL;
                 else{
                     delete rt;
                     rt = NULL;
                 }
                 if(rt)delete tmp;
-                // delete tmp;rt = NULL;
                 return 1;//1表示成功
             }
             _AVL(rt);// 重新平衡
@@ -138,18 +137,47 @@ void AVLTree::_AVL(node*& rt){  //平衡操作
 
 void AVLTree::_LVR(node*& rt){
     if(rt == NULL)return;
-    
-    printf("%s\n",rt->username.c_str());
     _LVR(rt->lson);
+    printf("%s\n",rt->username.c_str());
     _LVR(rt->rson);
 }
 
-// public 部分
-int AVLTree::insert(string& _username,string& _password){   //插入函数
-    _insert(head,_username,_password);
+void AVLTree::_release(node*& rt){
+    if(rt->lson)_release(rt->lson);
+    if(rt->rson)_release(rt->rson);
+    if(rt!= NULL)delete rt;
 }
 
-bool AVLTree::query(string& _username){ //查询和验证用户
+void AVLTree::_output(node*& rt){
+    ofstream outFile;
+    if(rt != NULL)outFile << rt->username << '\t' << rt->password << '\n';
+    if(rt->lson)_output(rt->lson);
+    if(rt->rson)_output(rt->rson);
+}
+
+// public
+AVLTree::AVLTree(){
+    head = NULL;
+}
+
+AVLTree::~AVLTree(){
+    if(head != NULL)_release(head);
+}
+
+int AVLTree::insert(string& _username,string& _password){   //插入函数
+    return _insert(head,_username,_password);
+}
+
+int AVLTree::login(string& _username,string& _password){ //查询和验证用户
+    node* p = *_query(head,_username);
+    if(p != NULL){
+        if(p->password == _password)return 1;
+        return -1;
+    }
+    else return 0;
+}
+
+bool AVLTree::query(string& _username){
     if(*_query(head,_username) != NULL)return 1;
     else return 0;
 }
@@ -162,7 +190,7 @@ int AVLTree::update(string& _username,string& _password,string& _newpassword){  
     return _update(head,_username,_password,_newpassword);
 }
 
-void AVLTree::graph(){
+void AVLTree::graph(){  //图形化展示 
     if(head == NULL){printf("Empty Tree!!\n");return ;}
     int len = (head->username).length();
     if (head->rson){
@@ -178,24 +206,44 @@ void AVLTree::LVR(){ //中序遍历
     _LVR(head);
 }
 
-int main(){
-    AVLTree T;
-    string str[15];
-    str[1]="qwq01";str[2]="qwq02";str[3]="qwq03";str[4]="qwq04";str[5]="qwq05";str[6]="qwq06";str[7]="qwq07";
-    str[8]="qwq08";str[8]="qwq08";str[9]="qwq09";str[10]="qwq10";str[11]="qwq11";
-    for(int i=1;i<=11;i++){
-        T.insert(str[i],str[1]);
+void AVLTree::clear(){
+    if(head != NULL)_release(head);
+}
+
+void AVLTree::input(string& filename){  //从文件中导入
+    ifstream inFile;
+    inFile.open(filename);
+    string username,password;
+    while(inFile>>username>>password){
+        insert(username,password);
     }
-    T.LVR();
+    inFile.close();
+    printf("Over!\n");
+}
 
+void AVLTree::output(string& filename){ // 导出文件
+    ofstream outFile;
+    outFile.open(filename);
+    _output(head);
+    outFile.close();
+    printf("Over!\n");
+}
+
+void AVLTree::menu(){
     printf("\n");
-    T.graph();
-
-    printf("%d\n",T.erase(str[7],str[1]));
-    T.LVR();
-    printf("%d\n",T.erase(str[6],str[1]));
-    T.LVR();
-
-    printf("\n");
-    T.graph();
+    printf("     ====================================================\n");
+    printf("         Welcome to the user manage system!!\n");
+    printf("             1.Import from file\n");
+    printf("             2.Export to file\n");
+    printf("             3.New user\n");
+    printf("             4.Log in\n");
+    printf("             5.Find a user\n");
+    printf("             6.Delete yourself\n");
+    printf("             7.Change your password\n");
+    printf("             8.Print Tree's graph\n");
+    printf("             9.Print by the number\n");
+    printf("             10.Release the buffer\n");
+    printf("             11.Quit\n");
+    printf("     ====================================================\n");
+    printf("What opearation do you want to do:");
 }
