@@ -31,7 +31,7 @@ private:
     void _AVL(node*& rt);    // 平衡操作
     void _LVR(node*& rt);// 中序遍历
     void _release(node*& rt); //清空缓存辅助函数
-    void _output(node*& rt);    //导出文件辅助函数
+    void _output(node*& rt,ofstream& out);    //导出文件辅助函数
 
 public:
     AVLTree();   //构造函数
@@ -47,4 +47,5 @@ public:
     void input(string& _filename); //从文件中导入
     void output(string& _filename); //导出文件
     void menu();    //菜单
+    void temp();    
 };  

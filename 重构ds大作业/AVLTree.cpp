@@ -68,15 +68,20 @@ node** AVLTree::_query(node*& rt,string& _username){  //查询和验证用户辅
 int AVLTree::_erase(node*& rt,string& _username,string& _password){  //删除的辅助函数
     if(rt == NULL)return 0;  //0表示找不到
     int flag = -1; //-1表示密码错误
-    if(_username < rt->username)flag = _erase(rt->lson,_username,_password);
-    else if(_username > rt->username)flag = _erase(rt->rson,_username,_password);
+    if(_username < rt->username){
+        flag = _erase(rt->lson,_username,_password);
+        _AVL(rt);
+    }
+    else if(_username > rt->username){
+        flag = _erase(rt->rson,_username,_password);
+        _AVL(rt);
+    }
     else{
         if(_password == rt->password){
-            printf("rt->username=%s\n",rt->username.c_str());
+            // printf("rt->username=%s\n",rt->username.c_str());
             if(rt->lson && rt->rson){
                 node* tmp = rt->lson;
                 while(tmp->rson)tmp = tmp->rson;
-                // (*rt)=(*tmp);
                 rt->username = tmp->username;
                 rt->password = tmp->password;
                 _erase(rt->lson,tmp->username,tmp->password);
@@ -125,12 +130,12 @@ void AVLTree::_AVL(node*& rt){  //平衡操作
         if(delta >1){
             int ldelta = deltaDeep(rt->lson);
             if(ldelta > 0)R(rt);
-            else if(ldelta <0){L(rt->lson);R(rt);}
+            else {L(rt->lson);R(rt);}
         }
         else if(delta <-1){
             int rdelta = deltaDeep(rt->rson);
             if(rdelta <0)L(rt);
-            else if(rdelta >0){R(rt->rson);L(rt);}
+            else {R(rt->rson);L(rt);}
         }
     }
 }
@@ -148,11 +153,10 @@ void AVLTree::_release(node*& rt){
     if(rt!= NULL)delete rt;
 }
 
-void AVLTree::_output(node*& rt){
-    ofstream outFile;
-    if(rt != NULL)outFile << rt->username << '\t' << rt->password << '\n';
-    if(rt->lson)_output(rt->lson);
-    if(rt->rson)_output(rt->rson);
+void AVLTree::_output(node*& rt,ofstream& out){
+    if(rt != NULL)out << rt->username << '\t' << rt->password << '\n';
+    if(rt->lson)_output(rt->lson,out);
+    if(rt->rson)_output(rt->rson,out); 
 }
 
 // public
@@ -183,7 +187,9 @@ bool AVLTree::query(string& _username){
 }
 
 int AVLTree::erase(string& _username,string& _password){    //删除函数
-    return _erase(head,_username,_password);
+    int flag = _erase(head,_username,_password);
+    _AVL(head);
+    return flag;
 }
 
 int AVLTree::update(string& _username,string& _password,string& _newpassword){  //更新密码
@@ -203,11 +209,13 @@ void AVLTree::graph(){  //图形化展示
 }
 
 void AVLTree::LVR(){ //中序遍历
+    if(head == NULL){printf("Empty Tree!!\n");return ;}
     _LVR(head);
 }
 
 void AVLTree::clear(){
     if(head != NULL)_release(head);
+    head = NULL;
 }
 
 void AVLTree::input(string& filename){  //从文件中导入
@@ -223,8 +231,9 @@ void AVLTree::input(string& filename){  //从文件中导入
 
 void AVLTree::output(string& filename){ // 导出文件
     ofstream outFile;
+    if(head == NULL){printf("Empty Tree!!\n");return ;}
     outFile.open(filename);
-    _output(head);
+    _output(head,outFile);
     outFile.close();
     printf("Over!\n");
 }
@@ -246,4 +255,13 @@ void AVLTree::menu(){
     printf("             11.Quit\n");
     printf("     ====================================================\n");
     printf("What opearation do you want to do:");
+}
+
+void AVLTree::temp(){   // 检验测试用
+    if(head == NULL)return;
+    node* u = head;
+    while(u->rson){
+        erase(u->rson->username,u->rson->password);
+        graph();
+    }
 }

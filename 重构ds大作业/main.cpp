@@ -5,8 +5,20 @@ int main(){
     string filename;int opp;
     string username,password,newpassword;
     int flag;
+    string op;
     while(1){
-        ex.menu();cin>>opp;bool flag_while = 0;
+        ex.menu();
+        cin>>op;
+        if(op.length()>2){
+            system("cls"); 
+            continue;
+        }
+        opp = 0;
+        for(int i=0;i<op.length();i++){
+            opp *= 10;
+            opp += op[i]-'0';
+        }
+        bool flag_while = 0;
         switch(opp){
             case 1:printf("What's the file's name?:");cin>>filename;system("cls");ex.input(filename);
                 break;
@@ -55,7 +67,8 @@ int main(){
                 break;
 
             case 11:flag_while = 1;break;
-            
+
+            case 12:ex.temp();break;
             default:system("cls");printf("Unknowed Operation!\n");
         }
         if(flag_while)break;
